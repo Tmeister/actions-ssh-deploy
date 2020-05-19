@@ -28,9 +28,9 @@ jobs:
         php-version: '7.3'
       
     - name: Setup Composer
-      uses: nick-zh/composer-php@master
+      uses: ErickGomez98/composer@master
       with:
-        action: 'install -oa'
+        action: 'install'
     
     - name: Install Composer Dependencies
       run: composer install --ignore-platform-reqs --no-interaction --prefer-dist --optimize-autoloader --no-dev
