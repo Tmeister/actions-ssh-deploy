@@ -51,7 +51,7 @@ jobs:
         subject: Github Actions job result
         # Literal body:
         body: A new deployment to Production was made from ${{github.repository}} and it was completed successfully!
-        to: tmeister.net
+        to: tmeister@gmail.com
         from: ElectricRate Deployer 🤖 <info@electricrate.com>
         # Optional content type (defaults to text/plain):
         content_type: text/html
