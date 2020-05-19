@@ -32,7 +32,7 @@ jobs:
         options: ''
         ssh_options: ''
         src: '/'
-        dest: 'serverpilot@s45.55.245.182:/srv/users/serverpilot/apps/coro/public/test/'
+        dest: 'serverpilot@45.55.245.182:/srv/users/serverpilot/apps/coro/public/test/'
 
     - name: Display status from deploy
       run: echo "${{ steps.deploy.outputs.status }}"
