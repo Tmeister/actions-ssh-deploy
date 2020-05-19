@@ -40,6 +40,21 @@ jobs:
         ssh_options: ''
         src: '/'
         dest: 'serverpilot@45.55.245.182:/srv/users/serverpilot/apps/coro/public/test/'
+        
+    - name: Send mail
+      uses: dawidd6/action-send-mail@v2
+      with:
+        server_address: smtp.sendgrid
+        server_port: 587
+        username: ${{secrets.MAIL_USERNAME}}
+        password: ${{secrets.MAIL_PASSWORD}}
+        subject: Github Actions job result
+        # Literal body:
+        body: A new deployment to Production was made from ${{github.repository}} and it was completed successfully!
+        to: noone@tmeister.net
+        from: ElectricRate Deployer 🤖
+        # Optional content type (defaults to text/plain):
+        content_type: text/html
 
     - name: Display status from deploy
       run: echo "${{ steps.deploy.outputs.status }}"
