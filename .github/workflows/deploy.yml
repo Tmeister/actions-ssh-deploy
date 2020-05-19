@@ -25,6 +25,9 @@ jobs:
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
+    - name: Create ENV file
+      run: echo "SENDGRID_API_KEY='${{secrets.SENDGRID_API_KEY}}'" > /admin/.env
+
     - name: Deploy to server
       id: deploy
       uses: Pendect/action-rsyncer@v1.1.0
