@@ -48,7 +48,7 @@ jobs:
         server_port: 587
         username: ${{secrets.MAIL_USERNAME}}
         password: ${{secrets.MAIL_PASSWORD}}
-        subject: Github Actions job result
+        subject: New Deplyment on ElectricRate
         # Literal body:
         body: A new deployment to Production was made from ${{github.repository}} and it was completed successfully!
         to: tmeister@gmail.com
