@@ -1,0 +1,8 @@
+{
+    "require": {
+        "monolog/monolog": "^1.23",
+        "phpoffice/phpspreadsheet": "^1.10",
+        "sendgrid/sendgrid": "^7.4",
+        "vlucas/phpdotenv": "^4.1"
+    }
+}
