@@ -27,6 +27,8 @@ jobs:
 
     - name: Create ENV file
       run: |
+        pwd
+        ls -la
         touch /admin/.env
         echo "SENDGRID_API_KEY='${{secrets.SENDGRID_API_KEY}}'" > /admin/.env
 
