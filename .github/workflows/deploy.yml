@@ -33,7 +33,7 @@ jobs:
         action: 'install -oa'
     
     - name: Install Composer Dependencies
-      run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+      run: composer install --ignore-platform-reqs --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
     - name: Deploy to server
       id: deploy
