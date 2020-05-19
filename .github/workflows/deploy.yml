@@ -22,18 +22,8 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.3'
-      
-    - name: Setup Composer
-      uses: ErickGomez98/composer@master
-      with:
-        action: 'install'
-    
-    - name: Install Composer Dependencies
-      run: composer install --ignore-platform-reqs --no-interaction --prefer-dist --optimize-autoloader --no-dev
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
     - name: Deploy to server
       id: deploy
