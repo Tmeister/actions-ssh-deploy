@@ -28,7 +28,7 @@ jobs:
       env:
         DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
       with:
-        flags: '-avzr --delete --exclude="node_modules" --exclude=".git"'
+        flags: '-avzr --delete --exclude="node_modules" --exclude=".git*"'
         options: ''
         ssh_options: ''
         src: '/'
