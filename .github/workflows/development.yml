@@ -31,3 +31,10 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
+        
+    - uses: act10ns/slack@v1
+      with:
+        status: ${{ job.status }}
+        steps: ${{ toJson(steps) }}
+        channel: '#tests'
+      if: always()
