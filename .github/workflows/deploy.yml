@@ -32,7 +32,7 @@ jobs:
     - name: Save the File
       uses: DamianReeves/write-file-action@master
       with:
-        path: ${{env.home}}/message.txt
+        path: /message.txt
         contents: |
           echo "${{github.event.head_commit.message}}"
         write-mode: append
@@ -47,7 +47,7 @@ jobs:
         password: ${{secrets.MAIL_PASSWORD}}
         subject: New Deplyment on ElectricRate
         # Literal body:
-        body: ${{env.home}}/message.txt
+        body: file://message.txt
         to: tmeister@gmail.com
         from: ElectricRate Deployer 🤖 <info@electricrate.com>
         # Optional content type (defaults to text/plain):
