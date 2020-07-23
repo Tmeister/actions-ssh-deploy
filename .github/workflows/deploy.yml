@@ -49,7 +49,7 @@ jobs:
         password: ${{secrets.MAIL_PASSWORD}}
         subject: New Deplyment on ElectricRate
         # Literal body:
-        body: !join ['A new deployment to Production was made from ${{github.repository}} and it was completed successfully!\n\r', env.commitmsg]
+        body: env.commitmsg
         to: tmeister@gmail.com
         from: ElectricRate Deployer 🤖 <info@electricrate.com>
         # Optional content type (defaults to text/plain):
