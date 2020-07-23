@@ -29,16 +29,6 @@ jobs:
       run: |
         echo "SENDGRID_API_KEY='${{secrets.SENDGRID_API_KEY}}'" > admin/.env
 
-    - name : GITHUB CONTEXT
-        env: GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-
-      - name: get commit message
-        run: |
-           echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
-      - name: show commit message
-        run : echo $commitmsg
-
     - name: Send mail
       uses: dawidd6/action-send-mail@v2
       with:
@@ -48,7 +38,7 @@ jobs:
         password: ${{secrets.MAIL_PASSWORD}}
         subject: New Deplyment on ElectricRate
         # Literal body:
-        body: env.commitmsg
+        body: ${{github.event.head_commit.message}}
         to: tmeister@gmail.com
         from: ElectricRate Deployer 🤖 <info@electricrate.com>
         # Optional content type (defaults to text/plain):
