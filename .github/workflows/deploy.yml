@@ -22,12 +22,20 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+    # - name: Install Dependencies
+    #   run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
-    - name: Create ENV file
-      run: |
-        echo "SENDGRID_API_KEY='${{secrets.SENDGRID_API_KEY}}'" > admin/.env
+    # - name: Create ENV file
+    #   run: |
+    #     echo "SENDGRID_API_KEY='${{secrets.SENDGRID_API_KEY}}'" > admin/.env
+
+    uses: DamianReeves/write-file-action
+      with:
+        path: ${{ env.home}}/message.txt
+        contents: |
+          echo "${{github.event.head_commit.message}}"
+        write-mode: append
+
 
     - name: Send mail
       uses: dawidd6/action-send-mail@v2
@@ -38,7 +46,7 @@ jobs:
         password: ${{secrets.MAIL_PASSWORD}}
         subject: New Deplyment on ElectricRate
         # Literal body:
-        body: ${{github.event.head_commit.message}}
+        body: ${{ env.home}}/message.txt
         to: tmeister@gmail.com
         from: ElectricRate Deployer 🤖 <info@electricrate.com>
         # Optional content type (defaults to text/plain):
