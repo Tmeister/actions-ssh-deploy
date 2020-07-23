@@ -31,7 +31,7 @@ jobs:
 
     uses: DamianReeves/write-file-action
       with:
-        path: ${{ env.home}}/message.txt
+        path: ${{env.home}}/message.txt
         contents: |
           echo "${{github.event.head_commit.message}}"
         write-mode: append
@@ -46,7 +46,7 @@ jobs:
         password: ${{secrets.MAIL_PASSWORD}}
         subject: New Deplyment on ElectricRate
         # Literal body:
-        body: ${{ env.home}}/message.txt
+        body: ${{env.home}}/message.txt
         to: tmeister@gmail.com
         from: ElectricRate Deployer 🤖 <info@electricrate.com>
         # Optional content type (defaults to text/plain):
