@@ -29,15 +29,6 @@ jobs:
     #   run: |
     #     echo "SENDGRID_API_KEY='${{secrets.SENDGRID_API_KEY}}'" > admin/.env
 
-    - name: Save the File
-      uses: DamianReeves/write-file-action@master
-      with:
-        path: /message.txt
-        contents: |
-          echo "${{github.event.head_commit.message}}"
-        write-mode: append
-
-
     - name: Send mail
       uses: dawidd6/action-send-mail@v2
       with:
@@ -47,11 +38,11 @@ jobs:
         password: ${{secrets.MAIL_PASSWORD}}
         subject: New Deplyment on ElectricRate
         # Literal body:
-        body: file://message.txt
+        body: ${{github.event.head_commit.message}}
         to: tmeister@gmail.com
         from: ElectricRate Deployer 🤖 <info@electricrate.com>
         # Optional content type (defaults to text/plain):
-        content_type: text/html
+        content_type: text/plain
 
     - name: Display status from deploy
       run: echo "${{ steps.deploy.outputs.status }}"
