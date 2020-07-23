@@ -29,18 +29,17 @@ jobs:
       run: |
         echo "SENDGRID_API_KEY='${{secrets.SENDGRID_API_KEY}}'" > admin/.env
 
-    - name: Deploy to server
-      id: deploy
-      uses: Pendect/action-rsyncer@v1.1.0
-      env:
-        DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
-      with:
-        flags: '-avzr --delete --exclude="node_modules" --exclude=".git*"'
-        options: ''
-        ssh_options: ''
-        src: '/'
-        dest: 'serverpilot@45.55.245.182:/srv/users/serverpilot/apps/coro/public/test/'
-        
+    - name : GITHUB CONTEXT
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: get commit message
+        run: |
+           echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
+      - name: show commit message
+        run : echo $commitmsg
+
     - name: Send mail
       uses: dawidd6/action-send-mail@v2
       with:
@@ -50,7 +49,7 @@ jobs:
         password: ${{secrets.MAIL_PASSWORD}}
         subject: New Deplyment on ElectricRate
         # Literal body:
-        body: A new deployment to Production was made from ${{github.repository}} and it was completed successfully!
+        body: !join ['A new deployment to Production was made from ${{github.repository}} and it was completed successfully!\n\r', env.commitmsg]
         to: tmeister@gmail.com
         from: ElectricRate Deployer 🤖 <info@electricrate.com>
         # Optional content type (defaults to text/plain):
