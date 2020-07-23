@@ -30,7 +30,7 @@ jobs:
     #     echo "SENDGRID_API_KEY='${{secrets.SENDGRID_API_KEY}}'" > admin/.env
 
     - name: Save the File
-      uses: DamianReeves/write-file-action@v2
+      uses: DamianReeves/write-file-action@master
       with:
         path: ${{env.home}}/message.txt
         contents: |
